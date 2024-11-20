@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Happy Birthday</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            perspective: 1000px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .birthday-container {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(10deg);
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+
+        .cake {
+            position: absolute;
+            width: 200px;
+            height: 250px;
+            background: linear-gradient(to bottom, #FFD700, #FFA500);
+            border-radius: 10px 10px 0 0;
+            z-index: 1;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .cake-left {
+            left: -100px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-15deg);
+            box-shadow: -5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .cake-right {
+            right: -100px;
+            top: 50%;
+            transform: translateY(-50%) rotate(15deg);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .candle {
+            position: absolute;
+            width: 10px;
+            height: 50px;
+            background: white;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 5px 5px 0 0;
+        }
+
+        .candle-flame {
+            position: absolute;
+            width: 10px;
+            height: 20px;
+            background: radial-gradient(circle at center, #FFD700, #FF4500);
+            top: -20px;
+            left: 0;
+            border-radius: 50% 50% 0 0;
+            animation: flicker 0.5s alternate infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-50%) rotate(-15deg);
+            }
+
+            50% {
+                transform: translateY(-50%) rotate(-10deg);
+            }
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: scaleY(1);
+            }
+
+            100% {
+                transform: scaleY(1.2);
+            }
+        }
+
+        .birthday-container:hover {
+            transform: rotateX(0deg) scale(1.02);
+        }
+
+        .avatar {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 6px solid white;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            margin: 0 auto 20px;
+            transition: transform 0.3s ease;
+        }
+
+            .avatar:hover {
+                transform: scale(1.05);
+            }
+
+        .birthday-title {
+            font-family: 'Great Vibes', cursive;
+            color: #ff6b6b;
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.3);
+            letter-spacing: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #ff4500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradient-shift 5s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .birthday-subtitle {
+            color: #4a4a4a;
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            letter-spacing: 1px;
+        }
+
+        .music-player {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .play-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+            border: none;
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+            .play-button:hover {
+                transform: scale(1.1) rotate(360deg);
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+            }
+
+            .play-button i {
+                color: white;
+                font-size: 30px;
+            }
+
+        .confetti {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: #f6d365;
+            opacity: 0.7;
+            transform: rotate(45deg);
+            animation: fall 10s linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .music-text {
+            color: #4a4a4a;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Bánh bên trái -->
+    <div class="cake cake-left">
+        <div class="candle">
+            <div class="candle-flame"></div>
+        </div>
+    </div>
+
+    <!-- Bánh bên phải -->
+    <div class="cake cake-right">
+        <div class="candle">
+            <div class="candle-flame"></div>
+        </div>
+    </div>
+
+    <div class="birthday-container">
+        <h1 class="birthday-title">Happy Birthday</h1>
+        <img src="./abc.png" alt="Birthday Avatar" class="avatar" onclick="showMessage()">
+        <h2 class="birthday-subtitle" onclick="showMessage()">Chúc mừng sinh nhật Cao Hiền</h2>
+
+        <div class="music-player">
+            <button class="play-button" onclick="toggleMusic()">
+                <i class="fas fa-play" id="playIcon"></i>
+            </button>
+        </div>
+        <div class="music-text">Nhấn để phát nhạc </div>
+    </div>
+
+    <audio id="player" loop>
+        <source src="./music.mp3" type="audio/mp3">
+    </audio>
+
+    <script>
+        let isPlaying = false;
+        const audio = document.getElementById('player');
+        const playButton = document.querySelector('.play-button');
+        const playIcon = document.getElementById('playIcon');
+
+        function toggleMusic() {
+            if (isPlaying) {
+                audio.pause();
+                playButton.classList.remove('playing');
+                playIcon.classList.remove('fa-pause');
+                playIcon.classList.add('fa-play');
+            } else {
+                audio.play();
+                playButton.classList.add('playing');
+                playIcon.classList.remove('fa-play');
+                playIcon.classList.add('fa-pause');
+            }
+            isPlaying = !isPlaying;
+        }
+
+        function showMessage() {
+            swal({
+                title: "🎂 Chúc Mừng Sinh Nhật! 🎂",
+                content: {
+                    element: "div",
+                    attributes: {
+                        innerHTML: `
+                                <div style="
+                                    background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+                                    border-radius: 15px;
+                                    padding: 20px;
+                                    color: #ffffff;
+                                    text-align: center;
+                                    font-family: 'Poppins', sans-serif;
+                                    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+                                ">
+                                    <h2 style="
+                                        font-family: 'Great Vibes', cursive;
+                                        font-size: 2.5rem;
+                                        margin-bottom: 15px;
+                                        color: #ffffff;
+                                        text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+                                    ">Cao Thị Hiền</h2>
+
+                                    <div style="
+                                        background: rgba(255,255,255,0.2);
+                                        border-radius: 10px;
+                                        padding: 15px;
+                                        margin-bottom: 15px;
+                                    ">
+                                        <p style="
+                                            font-size: 1rem;
+                                            line-height: 1.6;
+                                            color: #ffffff;
+                                        ">
+                                            🎉 22:00 20/11/2024  những giờ cuối cùng trong ngày sinh nhật tuổi 21, chúc Cao Hiền luôn rạng rỡ, hạnh phúc và tràn đầy năng lượng.
+                                            Mong bạn sẽ khám phá những điều tuyệt vời nhất của cuộc đời, tự tin theo đuổi đam mê và xây dựng những ước mơ riêng.
+                                            Chúc bạn luôn mạnh mẽ, kiên định trên con đường đã chọn.
+                                        </p>
+                                    </div>
+
+                                    <div style="
+                                        background: rgba(255,255,255,0.2);
+                                        border-radius: 10px;
+                                        padding: 15px;
+                                    ">
+                                        <p style="
+                                            font-size: 1rem;
+                                            line-height: 1.6;
+                                            color: #ffffff;
+                                            font-weight: bold;
+                                        ">
+                                            🎈 Chúc Cao Hiền có thật nhiều trải nghiệm đáng nhớ,
+                                            Chúc bạn và gia đình bạn thật mạnh khỏe và hạnh phúc!
+                                        </p>
+                                    </div>
+
+                                    <div style="
+                                        margin-top: 15px;
+                                        font-size: 1.2rem;
+                                        color: #ffffff;
+                                        text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+                                    ">
+                                        Chúc Mừng Sinh Nhật! 🎊
+                                    </div>
+                                </div>
+                            `
+                    }
+                },
+                button: {
+                    text: "❤️ Cảm ơn",
+                    className: "sweet-button",
+                    closeModal: true
+                },
+                className: "birthday-sweet-alert",
+                customClass: {
+                    popup: "birthday-popup"
+                }
+            });
+
+            // Optional: Add some custom styling to the SweetAlert
+            const style = document.createElement('style');
+            style.innerHTML = `
+                    .sweet-button {
+                        background: linear-gradient(45deg, #ff6b6b, #ff8e8e) !important;
+                        color: white !important;
+                        border-radius: 25px !important;
+                        padding: 10px 20px !important;
+                        font-family: 'Poppins', sans-serif !important;
+                        transition: transform 0.3s ease !important;
+                    }
+                    .sweet-button:hover {
+                        transform: scale(1.05) !important;
+                    }
+                `;
+            document.head.appendChild(style);
+        }
+
+        function createConfetti() {
+            const confettiCount = 50;
+            const container = document.body;
+
+            for (let i = 0; i < confettiCount; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDelay = `${Math.random() * 10}s`;
+                confetti.style.backgroundColor = `hsl(${Math.random() * 360}, 70%, 60%)`;
+                container.appendChild(confetti);
+            }
+        }
+
+        window.onload = createConfetti;
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
